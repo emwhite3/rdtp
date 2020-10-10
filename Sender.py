@@ -45,9 +45,9 @@ def read_payload(file):
 seq = 0
 #To stop snw_receiver thread after timeout.
 stop_event = Event()
-def send_snw(sock):
+def send_snw(sock, filename):
     # open file to be read.
-    file = open("bio.txt","r",encoding="utf-8")
+    file = open(filename,"r",encoding="utf-8")
     #The end of file, nothing else to read.
     while(file.tell()!=3460):
         ack = seq
@@ -206,6 +206,6 @@ if __name__ == '__main__':
     elif protocol == "snw":
         print("starting sender snw")
         print("Starting snw send thread")
-        _thread.start_new_thread(send_snw, (sock,))
+        _thread.start_new_thread(send_snw, (sock,filename, ))
         exit_program = input("Enter \"quit\" to exit program")
     sock.close()

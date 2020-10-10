@@ -49,7 +49,7 @@ def receive_sr(sock, windowsize):
 
 ack = 0
 
-def receive_snw(sock):
+def receive_snw(sock, filename):
     global ack
     endStr = ''
     prevData = '' #Holds previous data incase of packet drop from Receiver to Sender
@@ -83,7 +83,7 @@ def receive_snw(sock):
         else:
             print("Seq ", seq, " and ack ", ack, " match. Will write to file.")
             endStr = data.decode()
-            file = open("receiver_bio.txt","a")
+            file = open(filename,"a")
             file.write(endStr)
             pkt = packet.make(ack, data)
             prevData = data
@@ -112,5 +112,5 @@ if __name__ == '__main__':
         receive_gbn(sock, filename)
     elif protocol == "snw":
         print("starting receive snw")
-        receive_snw(sock)
+        receive_snw(sock, filename)
     sock.close()

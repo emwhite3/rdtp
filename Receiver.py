@@ -111,6 +111,6 @@ if __name__ == '__main__':
         print("starting receive gbn")
         receive_gbn(sock, filename)
     elif protocol == "snw":
-        print("starting receive gbn")
-        receive_snw(sock, filename)
+        print("starting receive snw")
+        receive_snw(sock)
     sock.close()
